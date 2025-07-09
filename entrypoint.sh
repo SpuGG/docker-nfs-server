@@ -51,6 +51,8 @@ exportfs -r
 # 6. Tail to keep container alive
 echo "[entrypoint] NFS server running. Waiting for requests..."
 tail -f /dev/null
+echo "[entrypoint] This is after the tail line..."
 
 # Just in case tail fails...
 sleep infinity
+echo "[entrypoint] It was sleeping before this and should never hit this line..."
