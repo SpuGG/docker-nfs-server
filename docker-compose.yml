@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ${EXPORTS_CONF:-./exports}:/etc/exports:ro
+      - ${EXPORTS_CONF:-./etc-exports}:/etc/exports:ro
       - ${EXPORTS_DIR}:/exports
 
     environment:
