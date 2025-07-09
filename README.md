@@ -16,6 +16,8 @@ I have a portainer deployment to make things slightly easier for my LibreElec in
 ```
 Because portainer has it's own /data volume where it creates /data/compose/<id>/ to dump all the files. the etc-exports does indeed go there, but when you specify `./etc-exports`, the '`.`' gets translated to `/data/compose/<id>/` (e.g. id = 3, so `/data/compose/3`) which it then tries to find on the host system. Basically `etc-exports` disappears after it's composed so it's no longer around (and not on the host) to get volume bound. So, one workaround is just to copy it, but then someone would need to either fork the repo or whatever to make changes to `etc-exports` which I find stupid.
 
+> In case your Docker-fu is low, that line just means `EXPORTS_CONF` will take on `./etc-exports` unless someone overrides it in the environment variable as something else.
+
 Despite copying `etc-exports` to the host somewhere and pointing `EXPORTS_CONF` environment variable to it, the container kept restarting (but at least deployed successfully). I'm still not exactly sure what's causing the restarts.
 
 ## Alternative Test
