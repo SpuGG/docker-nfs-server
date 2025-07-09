@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -x
 
 echo "[entrypoint] Starting NFS server container..."
 
@@ -43,7 +43,7 @@ rpcbind -w
 rpc.statd --no-notify
 rpc.idmapd
 mountd --no-nfs-version 1   # v3 and v4 only
-rpc.nfsd
+exec rpc.nfsd
 
 # 5. Apply exports configuration
 exportfs -r
