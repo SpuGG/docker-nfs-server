@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  nfs-server:
+    build: .
+    image: spugg/docker-nfs-server:latest
+    container_name: nfs-server
+    privileged: true
+    network_mode: host
+    restart: unless-stopped
+
+    volumes:
+      - ${EXPORTS_CONF}:/etc/exports
+      - ${EXPORTS_DIR}:/exports
+
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - NFS_DOMAIN=${NFS_DOMAIN:-localdomain}
